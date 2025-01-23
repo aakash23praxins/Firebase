@@ -42,4 +42,8 @@ class TaskAdapter(
     override fun getItemCount(): Int {
         return list.size
     }
+
+    fun getUserId(position: Int): String {
+        return list[position].userId
+    }
 }
