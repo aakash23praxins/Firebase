@@ -1,6 +1,7 @@
 package com.example.firebase
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,15 @@ class TaskAdapter(
         val dataItem = list[position]
         holder.txtTaskName.text = dataItem.taskName
         holder.txtTaskDetail.text = dataItem.taskDetails
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, UpdateData::class.java).apply {
+                putExtra("name", dataItem.taskName)
+                putExtra("details", dataItem.taskDetails)
+                putExtra("taskId",dataItem.userId)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
