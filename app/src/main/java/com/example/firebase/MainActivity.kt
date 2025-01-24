@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.firebase.Authentication.MainActivity
 import com.example.firebase.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: TaskAdapter
     private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     private var reference = database.reference.child("MyTaskList")
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,15 @@ class MainActivity : AppCompatActivity() {
             deleteAllData()
         }
 
+        auth = FirebaseAuth.getInstance()
+        binding.btnLogout.setOnClickListener {
+            auth.signOut()
+            Toast.makeText(this, "Log out user successfully!!", Toast.LENGTH_SHORT).show()
+            binding.btnLogout.visibility = View.GONE
+            startActivity(Intent(this, MainActivity::class.java).apply {
+                finish()
+            })
+        }
 //        adapter = TaskAdapter(list, this)
 
 //        binding.recyclerView.layoutManager = LinearLayoutManager(this)

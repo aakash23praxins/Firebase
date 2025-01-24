@@ -8,34 +8,29 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:paddingHorizontal="10dp"
-    tools:context=".AddData">
+    tools:context=".Authentication.SignUp">
 
-    <ImageView
-        android:id="@+id/imgGetImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_log_out" />
     <EditText
-        android:id="@+id/edtGetName"
+        android:id="@+id/edtSignUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:background="@drawable/rounded_border"
-        android:hint="Enter Task Name"
-        android:inputType="text"
+        android:hint="Enter Usern Name"
+        android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/edtGetTask"
+        android:id="@+id/edtSignPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:background="@drawable/rounded_border"
-        android:hint="Enter Task Detail"
-        android:inputType="text"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
         android:padding="15dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
@@ -59,14 +54,14 @@
             app:cornerRadius="10dp" />
 
         <Button
-            android:id="@+id/btnAdd"
+            android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:backgroundTint="#388E3C"
             android:padding="10dp"
-            android:text="Add Data"
+            android:text="Sign Up"
             android:textSize="20sp"
             app:cornerRadius="10dp" />
     </LinearLayout>

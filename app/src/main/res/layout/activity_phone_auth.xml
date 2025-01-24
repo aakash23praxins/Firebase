@@ -8,59 +8,54 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:paddingHorizontal="10dp"
-    tools:context=".UpdateData">
+    tools:context=".Authentication.PhoneAuth">
 
     <EditText
-        android:id="@+id/edtUpdateGetName"
+        android:id="@+id/edtPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:background="@drawable/rounded_border"
-        android:inputType="text"
+        android:hint="Enter Phone Number"
+        android:inputType="number"
+        android:maxLength="10"
         android:padding="15dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="20sp" />
 
+
+    <Button
+        android:id="@+id/btnSendCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:backgroundTint="#388E3C"
+        android:padding="10dp"
+        android:text="Send Verification Code"
+        android:textSize="20sp"
+        app:cornerRadius="10dp" />
+
     <EditText
-        android:id="@+id/edtUpdateGetTask"
+        android:id="@+id/edtVerificationCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:background="@drawable/rounded_border"
-        android:inputType="text"
+        android:hint="Enter Verification Code"
+        android:inputType="number"
         android:padding="15dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="20sp" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnVerify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/black"
-            android:padding="10dp"
-            android:text="Cancel"
-            android:textSize="20sp"
-            app:cornerRadius="10dp" />
-
-        <Button
-            android:id="@+id/btnUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:backgroundTint="#1976D2"
-            android:padding="10dp"
-            android:text="Update Data"
-            android:textSize="20sp"
-            app:cornerRadius="10dp" />
-    </LinearLayout>
+        android:backgroundTint="#D32F2F"
+        android:padding="10dp"
+        android:text="Verify"
+        android:textSize="20sp"
+        app:cornerRadius="10dp" />
 </LinearLayout>
