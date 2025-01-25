@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.firebase.databinding.ActivityAddDataBinding
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import java.util.UUID
 
 class AddData : AppCompatActivity() {
     private lateinit var binding: ActivityAddDataBinding
@@ -38,15 +39,39 @@ class AddData : AppCompatActivity() {
         registerActivityLauncher()
 
         binding.btnAdd.setOnClickListener {
-            val taskName = binding.edtGetName.text.toString()
-            val taskDetail = binding.edtGetTask.text.toString()
-            addTaskToDatabase(taskName, taskDetail)
+//            uploadPhoto()
+            addTaskToDatabase()
         }
         binding.imgGetImage.setOnClickListener {
             getImage()
         }
     }
 
+    private fun uploadPhoto() {
+        val imgUid = UUID.randomUUID().toString()
+
+        val newImgRef = imgReference.child("images").child(imgUid)
+
+        imageUri.let { uri ->
+            if (uri != null) {
+                newImgRef.putFile(uri).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                        val downloadRef = imgReference.child("images").child(imgUid)
+
+                        downloadRef.downloadUrl.addOnSuccessListener {
+                            val imageUrl = it.toString()
+                            addTaskToDatabase(imageUrl)
+                        }
+                    }
+                }.addOnFailureListener { task ->
+                    println("=============================== ${task.message}")
+                    Toast.makeText(this, "Firebase error ${task.message}", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+    }
 
 
     private fun registerActivityLauncher() {
@@ -95,7 +120,9 @@ class AddData : AppCompatActivity() {
         }
     }
 
-    private fun addTaskToDatabase(taskName: String, taskDetail: String) {
+    private fun addTaskToDatabase(imgUri: String? = null) {
+        val taskName = binding.edtGetName.text.toString()
+        val taskDetail = binding.edtGetTask.text.toString()
         val userId = reference.push().key.toString()
 
         val task = Task(userId, taskName, taskDetail)

@@ -3,5 +3,6 @@ package com.example.firebase
 data class Task(
     val userId: String = "",
     val taskName: String = "",
-    val taskDetails: String = ""
+    val taskDetails: String = "",
+    val imgUrl: String = "",
 )
